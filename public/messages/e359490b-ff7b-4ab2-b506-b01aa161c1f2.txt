@@ -1,0 +1,3 @@
+{"email": "mateusz@mateusz.pl", "password": "password",
+ "name":"Mateusz Swiderski", "city":"Reszel"   
+}
