@@ -1,23 +1,32 @@
-FROM php:8.1-fpm
+# Use the official PHP image as a base
+FROM php:8.1-apache
 
-RUN apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libpq-dev libicu-dev
-
-RUN docker-php-ext-install zip pdo_pgsql intl
-
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update && \
+    apt-get install -y git zip unzip curl
+# Install the Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-RUN mkdir /app
-WORKDIR /app
+# Copy the `symfony` binary to /usr/local/bin
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY / /var/www/html/
+# Set working directory
+WORKDIR /var/www/html
 
+# Copy application files
 COPY . .
 
-RUN composer install --optimize-autoloader --no-dev
 
-CMD ["php-fpm"]
+# Install application dependencies
+RUN composer install --no-interaction
 
+
+# Create var/logs directory
+RUN mkdir -p var/logs
+
+# Set file permissions
+RUN chown -R www-data:www-data var/cache var/logs
+CMD ["symfony", "server:start"]
+# Expose port 8000
 EXPOSE 8000
-
-CMD ["php", "-S", "127.0.0.1:8000", "-t", "public"]
-#
-#write me step by step how to write a dockerfile to run symfony app, but before that is building vue application in ./vue folder and after build move files : ./vue/dist/index.html to ./templates/vue, then,
-# ./vue/dist/css directory and ./vue/dist/js directory with favicon.ico to ./public directory
