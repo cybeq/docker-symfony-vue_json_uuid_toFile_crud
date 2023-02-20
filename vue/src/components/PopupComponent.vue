@@ -20,7 +20,9 @@ export default {
   },
   methods: {
     closePopup() {
+      location.reload();
       this.$emit("close");
+
     },
   },
 };

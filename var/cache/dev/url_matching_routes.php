@@ -8,6 +8,7 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
+        '/' => [[['_route' => 'app_main', '_controller' => 'App\\Controller\\MainController::vueApp'], null, null, null, false, false, null]],
         '/message' => [[['_route' => 'app_message', '_controller' => 'App\\Controller\\MessageController::index'], null, null, null, false, false, null]],
         '/message/create' => [[['_route' => 'app_message_create', '_controller' => 'App\\Controller\\MessageController::create'], null, ['POST' => 0], null, false, false, null]],
     ],

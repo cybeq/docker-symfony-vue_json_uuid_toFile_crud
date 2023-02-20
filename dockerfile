@@ -18,3 +18,6 @@ CMD ["php-fpm"]
 EXPOSE 8000
 
 CMD ["php", "-S", "127.0.0.1:8000", "-t", "public"]
+#
+#write me step by step how to write a dockerfile to run symfony app, but before that is building vue application in ./vue folder and after build move files : ./vue/dist/index.html to ./templates/vue, then,
+# ./vue/dist/css directory and ./vue/dist/js directory with favicon.ico to ./public directory

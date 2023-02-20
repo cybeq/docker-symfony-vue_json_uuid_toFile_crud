@@ -4,6 +4,7 @@
 
 return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
+    'app_main' => [[], ['_controller' => 'App\\Controller\\MainController::vueApp'], [], [['text', '/']], [], [], []],
     'app_message' => [[], ['_controller' => 'App\\Controller\\MessageController::index'], [], [['text', '/message']], [], [], []],
     'app_message_create' => [[], ['_controller' => 'App\\Controller\\MessageController::create'], [], [['text', '/message/create']], [], [], []],
     'app_message_list' => [['sort'], ['sort' => null, '_controller' => 'App\\Controller\\MessageController::list'], [], [['variable', '/', '[^/]++', 'sort', true], ['text', '/message/list']], [], [], []],

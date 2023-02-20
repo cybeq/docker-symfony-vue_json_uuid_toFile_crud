@@ -10,6 +10,8 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "core-js": "^3.8.3",
+    "devextreme": "^22.2.4",
+    "devextreme-vue": "^22.2.4",
     "vue": "^3.2.13",
     "vue-json-pretty": "^2.2.3"
   },
